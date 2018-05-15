@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour {
     Move m_Move = new Move();
     Attack m_Attack = new Attack();
     Death m_Death = new Death();
-    bool isMove = false;
     public Vector2 playerVector = Vector2.zero;
     public Rigidbody rigidbady;
     public float playerSpeed = 10.0f;

@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerController: {fileID: 1509734067}
-  dragRadius: 80
+  dragRadius: 70
 --- !u!114 &102241848
 MonoBehaviour:
   m_ObjectHideFlags: 0

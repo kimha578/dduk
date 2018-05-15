@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class State : MonoBehaviour {
+public abstract class State  {
     
     public virtual void Enter(GameObject obj)
     { 
@@ -51,9 +51,7 @@ public class Move : State
     public override void Enter(GameObject obj)
     {
         charOBJ = obj;
-        charOBJ.GetComponent<Animator>().SetBool("Move", true);
-        Debug.Log("OK");
-    }
+        charOBJ.GetComponent<Animator>().SetBool("Move", true);    }
 
     public override void Execute(GameObject obj)
     {
