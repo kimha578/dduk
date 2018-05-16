@@ -412,7 +412,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Attack
 --- !u!222 &280757337
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -775,8 +775,9 @@ GameObject:
   - component: {fileID: 1155754073}
   - component: {fileID: 1155754072}
   - component: {fileID: 1155754071}
+  - component: {fileID: 1155754074}
   m_Layer: 5
-  m_Name: Button
+  m_Name: AttckButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -840,8 +841,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1509734067}
-        m_MethodName: OnMove
+      - m_Target: {fileID: 1155754074}
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -886,6 +887,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1155754069}
+--- !u!114 &1155754074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1155754069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c50d08dd2279b2a408095270321ae598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerController: {fileID: 1509734067}
 --- !u!1 &1442589927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,6 +1101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2f539e774522e46ab7a6cf8cf64c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCombo: 0
   playerVector: {x: 0, y: 0}
   rigidbady: {fileID: 1509734066}
   playerSpeed: 10

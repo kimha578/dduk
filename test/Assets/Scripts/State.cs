@@ -75,20 +75,46 @@ public class Move : State
 public class Attack : State
 {
     GameObject charOBJ;
+    Animator charAnim;
     public override void Enter(GameObject obj)
     {
         charOBJ = obj;
+        charAnim = charOBJ.GetComponent<Animator>();
+        charAnim.SetTrigger("Jab");
     }
 
     public override void Execute(GameObject obj)
     {
-
+        if (charAnim.GetCurrentAnimatorStateInfo(0).length > charAnim.GetCurrentAnimatorStateInfo(0).normalizedTime &&
+            (!charAnim.GetCurrentAnimatorStateInfo(0).IsName("Jab") &&
+            !charAnim.GetCurrentAnimatorStateInfo(0).IsName("Spinkick") &&
+            !charAnim.GetCurrentAnimatorStateInfo(0).IsName("RisingPunch")))
+        {
+            charOBJ.GetComponent<PlayerController>().Change(PlayerController.stateMachine.Idle);
+        }
+        else {
+            if (charOBJ.GetComponent<PlayerController>().isCombo)
+            {
+                if (charAnim.GetCurrentAnimatorStateInfo(0).IsName("Jab"))
+                {
+                    charAnim.SetTrigger("Spinkick");
+                    charOBJ.GetComponent<PlayerController>().isCombo = false;
+                }
+                else if (charAnim.GetCurrentAnimatorStateInfo(0).IsName("Spinkick"))
+                {
+                    charAnim.SetTrigger("RisingPunch");
+                    charOBJ.GetComponent<PlayerController>().isCombo = false;
+                }
+            }
+        }
     }
 
     public override void Exit(GameObject obj)
     {
-
-    }
+        charAnim.ResetTrigger("Jab");
+        charAnim.ResetTrigger("Spinkick") ;
+        charAnim.ResetTrigger("RisingPunch");
+}
 }
 //사망
 public class Death : State

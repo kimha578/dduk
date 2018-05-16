@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
     Move m_Move = new Move();
     Attack m_Attack = new Attack();
     Death m_Death = new Death();
+    public  bool isCombo = false;
     public Vector2 playerVector = Vector2.zero;
     public Rigidbody rigidbady;
     public float playerSpeed = 10.0f;
@@ -87,5 +88,17 @@ public class PlayerController : MonoBehaviour {
         playerVector = new Vector2(vec3.x, vec3.y);
        
 
+    }
+
+    public void OnAttack()
+    {
+        if (currentState != stateMachine.Attack)
+        {
+            Change(stateMachine.Attack);
+        }
+        else 
+        {
+            isCombo = true;
+        }
     }
 }
