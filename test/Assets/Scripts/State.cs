@@ -56,14 +56,15 @@ public class Move : State
     public override void Execute(GameObject obj)
     {
         playerLook = charOBJ.GetComponent<PlayerController>().playerVector;
-        if (playerLook.x != 0 && playerLook.y != 0)
-        charOBJ.transform.rotation = Quaternion.LookRotation(new Vector3(playerLook.x, 0.0f, playerLook.y));
-        charOBJ.transform.Translate(0, 0, playerLook.magnitude * charOBJ.GetComponent<PlayerController>().playerSpeed*Time.deltaTime);
-        
         if (obj.GetComponent<PlayerController>().playerVector.magnitude < 0.2f)
         {
             obj.GetComponent<PlayerController>().Change(PlayerController.stateMachine.Idle);
         }
+        if (playerLook.x != 0 && playerLook.y != 0)
+        charOBJ.transform.rotation = Quaternion.LookRotation(new Vector3(playerLook.x, 0.0f, playerLook.y));
+        charOBJ.transform.Translate(0, 0, playerLook.magnitude * charOBJ.GetComponent<PlayerController>().playerSpeed*Time.deltaTime);
+        
+        
     }
 
     public override void Exit(GameObject obj)

@@ -26,12 +26,14 @@ public class Joypad : MonoBehaviour {
         touchPad = GetComponent<RectTransform>();
         // 시작 위치 저장
         startPos = touchPad.position;
+
 	}
     
     // 눌렀는지 여부 체크 = 활성화
     public void ButtonDown()
     {
         buttonPress = true;
+       // transform.localScale = new Vector3(10, 10, 10);
     }
     
     // 버튼을 땟는지 여부 체크  = 비활성화
@@ -39,6 +41,7 @@ public class Joypad : MonoBehaviour {
     {
         buttonPress = false;
         HandleInput(startPos);
+       //transform.localScale = new Vector3(1, 1, 152);
     }
 
     // 값의 변화가 있을때만 업데이트
@@ -84,18 +87,21 @@ public class Joypad : MonoBehaviour {
                     if (touch.position.x <=(startPos.x+dragRadius))
                     {
                         touchID = i;
+
                     }
+                    
                 }
 
-                if(touch.phase==TouchPhase.Moved && touch.phase==TouchPhase.Stationary)
+                else if(touch.phase==TouchPhase.Moved || touch.phase==TouchPhase.Stationary)
                 {
                     if (touchID == i)
                     {
-                        HandleInput(touchpos); 
+                        HandleInput(touchpos);
                     }
+                    
                 }
 
-                if(touch.phase == TouchPhase.Ended)
+                else if(touch.phase == TouchPhase.Ended)
                 {
                     if(touchID==i)
                     {

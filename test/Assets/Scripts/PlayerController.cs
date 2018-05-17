@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour {
     public Vector2 playerVector = Vector2.zero;
     public Rigidbody rigidbady;
     public float playerSpeed = 10.0f;
+    public  Collider jabBox;
+    public Collider spinkickBox;
 
 	// Use this for initialization
 	void Start () {
@@ -100,5 +102,29 @@ public class PlayerController : MonoBehaviour {
         {
             isCombo = true;
         }
+    }
+
+    public void OnJabHitBox()
+    {
+        jabBox.gameObject.SetActive(true);
+    }
+    public void OffJabHitBox()
+    {
+        jabBox.gameObject.SetActive(false);
+    }
+
+    public void OnSpinkickHitBox()
+    {
+        spinkickBox.gameObject.SetActive(true);
+    }
+
+    public void OffSpinkickHitBox()
+    {
+        spinkickBox.gameObject.SetActive(false);
+    }
+
+    public void OnRisingPunchHitBox()
+    {
+
     }
 }
