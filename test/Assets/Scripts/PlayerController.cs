@@ -20,8 +20,9 @@ public class PlayerController : MonoBehaviour {
     public Vector2 playerVector = Vector2.zero;
     public Rigidbody rigidbady;
     public float playerSpeed = 10.0f;
-    public  Collider jabBox;
+    public Collider jabBox;
     public Collider spinkickBox;
+    public Collider risingPunchBox;
 
 	// Use this for initialization
 	void Start () {
@@ -125,6 +126,11 @@ public class PlayerController : MonoBehaviour {
 
     public void OnRisingPunchHitBox()
     {
+        risingPunchBox.gameObject.SetActive(true);
+    }
 
+    public void OffRisingPunchHitBox()
+    {
+        risingPunchBox.gameObject.SetActive(false);
     }
 }

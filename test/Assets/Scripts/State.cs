@@ -60,10 +60,13 @@ public class Move : State
         {
             obj.GetComponent<PlayerController>().Change(PlayerController.stateMachine.Idle);
         }
-        if (playerLook.x != 0 && playerLook.y != 0)
-        charOBJ.transform.rotation = Quaternion.LookRotation(new Vector3(playerLook.x, 0.0f, playerLook.y));
-        charOBJ.transform.Translate(0, 0, playerLook.magnitude * charOBJ.GetComponent<PlayerController>().playerSpeed*Time.deltaTime);
-        
+        else
+        {
+            if (playerLook.x != 0 && playerLook.y != 0)
+                charOBJ.transform.rotation = Quaternion.LookRotation(new Vector3(playerLook.x, 0.0f, playerLook.y));
+
+            charOBJ.transform.Translate(0, 0, playerLook.magnitude * charOBJ.GetComponent<PlayerController>().playerSpeed * Time.deltaTime);
+        }
         
     }
 
@@ -82,6 +85,7 @@ public class Attack : State
         charOBJ = obj;
         charAnim = charOBJ.GetComponent<Animator>();
         charAnim.SetTrigger("Jab");
+        charAnim.Play("Jab");
     }
 
     public override void Execute(GameObject obj)
@@ -91,6 +95,7 @@ public class Attack : State
             !charAnim.GetCurrentAnimatorStateInfo(0).IsName("Spinkick") &&
             !charAnim.GetCurrentAnimatorStateInfo(0).IsName("RisingPunch")))
         {
+
             charOBJ.GetComponent<PlayerController>().Change(PlayerController.stateMachine.Idle);
         }
         else {
