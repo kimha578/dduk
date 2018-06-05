@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        m_Idle.Enter(this.gameObject);
         currentState = stateMachine.Idle;
         rigidbady = this.GetComponent<Rigidbody>();
 	}

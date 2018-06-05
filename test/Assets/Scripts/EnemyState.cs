@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class EnemyState 
 {
@@ -27,13 +28,17 @@ public class EnemyIdle: EnemyState
     public override void Enter(GameObject obj)
     {
         charOBJ = obj;
-
+        
 
     }
 
     public override void Execute(GameObject obj)
     {
-        
+       // Debug.Log(this.charOBJ.GetComponent<Animator>());
+        if (Vector3.Magnitude(charOBJ.transform.position - charOBJ.GetComponent<Enemy>().target.transform.position) >= 2.0f)
+        {
+            charOBJ.GetComponent<Enemy>().Change(Enemy.EnemystateMachine.Move);
+        }
     }
 
     public override void Exit(GameObject obj)
@@ -49,13 +54,17 @@ public class EnemyMove: EnemyState
     public override void Enter(GameObject obj)
     {
         charOBJ = obj;
-
-
+        if (charOBJ.GetComponent<Animator>() != null)
+        {
+            this.charOBJ.GetComponent<Animator>().SetBool("Move", true);
+        }
+        charOBJ.GetComponent<NavMeshAgent>().enabled = true;
+        charOBJ.GetComponent<NavMeshAgent>().destination = charOBJ.GetComponent<Enemy>().target.transform.position;
     }
 
     public override void Execute(GameObject obj)
     {
-
+        charOBJ.GetComponent<NavMeshAgent>().destination = charOBJ.GetComponent<Enemy>().target.transform.position;
     }
 
     public override void Exit(GameObject obj)
@@ -71,8 +80,10 @@ public class EnemyAttack: EnemyState
     public override void Enter(GameObject obj)
     {
         charOBJ = obj;
-
-
+        if (charOBJ.GetComponent<Animator>() != null)
+        {
+            charOBJ.GetComponent<Animator>().SetTrigger("Attack");
+        }
     }
 
     public override void Execute(GameObject obj)

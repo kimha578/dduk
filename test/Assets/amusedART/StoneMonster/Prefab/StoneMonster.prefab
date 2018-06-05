@@ -96,7 +96,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4788319935855200}
   - component: {fileID: 111495423891279680}
-  - component: {fileID: 114489361866395698}
+  - component: {fileID: 54800258702160760}
+  - component: {fileID: 136406399277910856}
+  - component: {fileID: 114575568838318852}
+  - component: {fileID: 195047376896594300}
   m_Layer: 0
   m_Name: StoneMonster
   m_TagString: Untagged
@@ -236,8 +239,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713781036754730}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.363, y: 0, z: 0.923}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4966007699546920}
   - {fileID: 4244191954350522}
@@ -274,6 +277,21 @@ Transform:
   m_Father: {fileID: 4788319935855200}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: -139.09474}
+--- !u!54 &54800258702160760
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713781036754730}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!111 &111495423891279680
 Animation:
   m_ObjectHideFlags: 1
@@ -293,7 +311,7 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &114489361866395698
+--- !u!114 &114575568838318852
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -301,9 +319,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1713781036754730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a8eeb9411d2d4e4180ec70be187c615, type: 3}
+  m_Script: {fileID: 11500000, guid: 8194b2004343beb42a1736ead063ddf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyOBJ: {fileID: 1713781036754730}
+  target: {fileID: 0}
+--- !u!136 &136406399277910856
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713781036754730}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.6
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.31, z: 0}
 --- !u!137 &137944918822585846
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -357,3 +390,24 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.054999024, y: -0.15129942, z: 0.000000029802322}
     m_Extent: {x: 0.651101, y: 0.6444122, z: 0.4401703}
   m_DirtyAABB: 0
+--- !u!195 &195047376896594300
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713781036754730}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2.65
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
