@@ -28,7 +28,15 @@ public class EnemyIdle: EnemyState
     public override void Enter(GameObject obj)
     {
         charOBJ = obj;
-        
+        if (charOBJ.GetComponent<Animator>() != null)
+        {
+            charOBJ.GetComponent<Animator>().SetBool("Move",false);
+        }
+        else
+        {
+            charOBJ.GetComponent<Animation>().Play("Idle");
+
+        }
 
     }
 
@@ -38,6 +46,10 @@ public class EnemyIdle: EnemyState
         if (Vector3.Magnitude(charOBJ.transform.position - charOBJ.GetComponent<Enemy>().target.transform.position) >= 2.0f)
         {
             charOBJ.GetComponent<Enemy>().Change(Enemy.EnemystateMachine.Move);
+        }
+        else if (Vector3.Magnitude(charOBJ.transform.position - charOBJ.GetComponent<Enemy>().target.transform.position) < 2.0f)
+        {
+            charOBJ.transform.LookAt(charOBJ.GetComponent<Enemy>().target.transform.position);
         }
     }
 
@@ -58,6 +70,11 @@ public class EnemyMove: EnemyState
         {
             this.charOBJ.GetComponent<Animator>().SetBool("Move", true);
         }
+        else
+        {
+            charOBJ.GetComponent<Animation>().Play("Move");
+
+        }
         charOBJ.GetComponent<NavMeshAgent>().enabled = true;
         charOBJ.GetComponent<NavMeshAgent>().destination = charOBJ.GetComponent<Enemy>().target.transform.position;
     }
@@ -65,6 +82,11 @@ public class EnemyMove: EnemyState
     public override void Execute(GameObject obj)
     {
         charOBJ.GetComponent<NavMeshAgent>().destination = charOBJ.GetComponent<Enemy>().target.transform.position;
+        if (Vector3.Magnitude(charOBJ.transform.position - charOBJ.GetComponent<Enemy>().target.transform.position) < 2.0f)
+        {
+            charOBJ.GetComponent<Enemy>().Change(Enemy.EnemystateMachine.Idle);
+        }
+        Debug.Log(charOBJ.GetComponent<Enemy>().m_AttackDelay);
     }
 
     public override void Exit(GameObject obj)
@@ -83,6 +105,11 @@ public class EnemyAttack: EnemyState
         if (charOBJ.GetComponent<Animator>() != null)
         {
             charOBJ.GetComponent<Animator>().SetTrigger("Attack");
+        }
+        else
+        {
+            charOBJ.GetComponent<Animation>().Play("Attack");
+
         }
     }
 

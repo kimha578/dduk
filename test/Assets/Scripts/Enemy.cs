@@ -13,6 +13,7 @@ public abstract class Enemy : MonoBehaviour {
 
     public GameObject enemyOBJ;
     public GameObject target;
+    public float m_LastAttack, m_AttackDelay;
     EnemyIdle    m_Idle =   new EnemyIdle();
     EnemyMove    m_Move =   new EnemyMove();
     EnemyAttack  m_Attack = new EnemyAttack();
@@ -83,5 +84,10 @@ public abstract class Enemy : MonoBehaviour {
         }
 
 
+    }
+
+    protected virtual void SetDelay()
+    {
+        
     }
 }

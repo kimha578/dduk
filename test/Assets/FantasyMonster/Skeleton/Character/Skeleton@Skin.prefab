@@ -867,7 +867,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1345104306817276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9446106, y: 0, z: 0.76052856}
+  m_LocalPosition: {x: -8.65, y: 0, z: 0.76052856}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4475925048241296}
@@ -1227,6 +1227,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyOBJ: {fileID: 1345104306817276}
   target: {fileID: 0}
+  m_LastAttack: 0
+  m_AttackDelay: 0
+  m_SkeletonDelay: 3
 --- !u!136 &136195484684411038
 CapsuleCollider:
   m_ObjectHideFlags: 1
